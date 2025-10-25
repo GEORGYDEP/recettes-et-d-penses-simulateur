@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget & Vie : 3 mois pour construire votre ménage</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💰 Budget & Vie</h1>
+            <p>3 mois pour construire votre ménage</p>
+        </div>
+
+        <!-- Section Email -->
+        <div id="emailSection" class="email-section">
+            <h2>Bienvenue !</h2>
+            <p>Veuillez entrer votre adresse email école pour commencer</p>
+            <input type="email" id="emailInput" placeholder="prenom.nom@istlm.org" pattern=".+@istlm\.org">
+            <br>
+            <button onclick="startGame()">Commencer le jeu</button>
+            <p id="emailError" style="color: red; margin-top: 10px;"></p>
+        </div>
+
+        <!-- Contenu du jeu -->
+        <div id="gameContent" class="hidden">
+            <!-- Barre de progression -->
+            <div class="progress-bar">
+                <div class="progress-step" id="step1">
+                    <div class="circle">1</div>
+                    <span>Septembre</span>
+                </div>
+                <div class="progress-step" id="step2">
+                    <div class="circle">2</div>
+                    <span>Octobre</span>
+                </div>
+                <div class="progress-step" id="step3">
+                    <div class="circle">3</div>
+                    <span>Novembre</span>
+                </div>
+            </div>
+
+            <!-- Compteurs -->
+            <div class="counters">
+                <div class="counter savings">
+                    <div>💰 Épargne accumulée</div>
+                    <div class="amount" id="savingsAmount">0 €</div>
+                </div>
+                <div class="counter credit">
+                    <div>💳 Crédits à rembourser</div>
+                    <div class="amount" id="creditAmount">0 €</div>
+                </div>
+            </div>
+
+            <!-- Contenu du mois -->
+            <div class="game-content" id="monthContent"></div>
+        </div>
+    </div>
+
+    <!-- Modal de résumé -->
+    <div class="summary-modal" id="summaryModal">
+        <div class="summary-content">
+            <h2 id="summaryTitle">Résumé du mois</h2>
+            <div id="summaryBody"></div>
+            <div class="action-buttons">
+                <button class="btn btn-primary" onclick="nextMonth()">Mois suivant</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/game.js"></script>
+    <script src="js/months.js"></script>
+    <script src="js/choices.js"></script>
+</body>
+</html>
