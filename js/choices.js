@@ -81,9 +81,9 @@ function selectTransport(month, type, cost) {
         if (healthOptions) {
             if (type === 'train') {
                 healthOptions.innerHTML = `
-                    <div class="choice-option" onclick="selectHealth(2, 100)">
+                    <div class="choice-option" onclick="selectHealth(2, 150)">
                         <div class="title">Minimal</div>
-                        <div class="amount">100 €</div>
+                        <div class="amount">150 €</div>
                     </div>
                     <div class="choice-option" onclick="selectHealth(2, 300)">
                         <div class="title">Complet</div>
@@ -92,9 +92,9 @@ function selectTransport(month, type, cost) {
                 `;
             } else {
                 healthOptions.innerHTML = `
-                    <div class="choice-option" onclick="selectHealth(2, 100)">
+                    <div class="choice-option" onclick="selectHealth(2, 150)">
                         <div class="title">Standard</div>
-                        <div class="amount">100 €</div>
+                        <div class="amount">150 €</div>
                     </div>
                 `;
             }
@@ -316,9 +316,9 @@ function checkAllChoicesMade(month) {
 
 function checkAllChoicesMade2() {
     const m = gameState.months[2];
-    
+
     let allMade = true;
-    
+
     if (!m.choices.housing) allMade = false;
     if (!m.expenses.transport) allMade = false;
     if (!m.expenses.telecom) allMade = false;
@@ -326,6 +326,7 @@ function checkAllChoicesMade2() {
     if (m.expenses.leisure === undefined) allMade = false;
     if (m.expenses.health === undefined) allMade = false;
     if (m.expenses.other === undefined) allMade = false;
+    if (m.expenses.savings === undefined) allMade = false;
 
     if (allMade) {
         const budgetSection = document.getElementById('budgetTableSection');

@@ -16,7 +16,7 @@ let gameState = {
         },
         2: {
             name: 'Octobre',
-            income: 1800,
+            income: 1600,
             expenses: {},
             choices: {},
             balance: 0
