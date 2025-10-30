@@ -113,17 +113,17 @@ function loadMonth1() {
             <div class="choice-card">
                 <h3>🎟️ Loisirs/Extras</h3>
                 <div class="choice-options">
-                    <div class="choice-option" onclick="selectLeisure(1, 50)">
+                    <div class="choice-option" onclick="selectLeisure(1, 100)">
                         <div class="title">Minimal</div>
-                        <div class="amount">50 €</div>
+                        <div class="amount">100 €</div>
                     </div>
                     <div class="choice-option" onclick="selectLeisure(1, 150)">
                         <div class="title">Modéré</div>
                         <div class="amount">150 €</div>
                     </div>
-                    <div class="choice-option" onclick="selectLeisure(1, 350)">
-                        <div class="title">Élevé</div>
-                        <div class="amount">350 €</div>
+                    <div class="choice-option" onclick="selectLeisure(1, 450)">
+                        <div class="title">Portant</div>
+                        <div class="amount">450 €</div>
                     </div>
                 </div>
             </div>
@@ -132,9 +132,9 @@ function loadMonth1() {
             <div class="choice-card">
                 <h3>🩺 Santé/Imprévus</h3>
                 <div class="choice-options">
-                    <div class="choice-option" onclick="selectHealth(1, 20)">
+                    <div class="choice-option" onclick="selectHealth(1, 50)">
                         <div class="title">Minimal</div>
-                        <div class="amount">20 €</div>
+                        <div class="amount">50 €</div>
                     </div>
                     <div class="choice-option" onclick="selectHealth(1, 100)">
                         <div class="title">Prudent</div>
@@ -151,9 +151,9 @@ function loadMonth1() {
             <div class="choice-card">
                 <h3>👕 Autres (habillement, entretien, mobilier)</h3>
                 <div class="choice-options">
-                    <div class="choice-option" onclick="selectOther(1, 0)">
-                        <div class="title">Aucun</div>
-                        <div class="amount">0 €</div>
+                    <div class="choice-option" onclick="selectOther(1, 50)">
+                        <div class="title">Minimal</div>
+                        <div class="amount">50 €</div>
                     </div>
                     <div class="choice-option" onclick="selectOther(1, 150)">
                         <div class="title">Modéré</div>
@@ -166,6 +166,25 @@ function loadMonth1() {
                 </div>
                 <div id="furnitureWarning" class="warning-box hidden">
                     ⚠️ Si vous choisissez l'appartement, 450 € de mobilier sont obligatoires !
+                </div>
+            </div>
+
+            <!-- Épargne -->
+            <div class="choice-card">
+                <h3>💰 Épargne</h3>
+                <div class="choice-options">
+                    <div class="choice-option" onclick="selectSavings(1, 50)">
+                        <div class="title">Minimal</div>
+                        <div class="amount">50 €</div>
+                    </div>
+                    <div class="choice-option" onclick="selectSavings(1, 100)">
+                        <div class="title">Modéré</div>
+                        <div class="amount">100 €</div>
+                    </div>
+                    <div class="choice-option" onclick="selectSavings(1, 150)">
+                        <div class="title">Portant</div>
+                        <div class="amount">150 €</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -256,6 +275,12 @@ function loadMonth1() {
                     <div class="table-cell">Mensuel</div>
                     <div class="table-cell">👕 Autres <span class="badge variable">Variable</span></div>
                     <div class="table-cell right" id="other1">0 €</div>
+                </div>
+
+                <div class="table-row">
+                    <div class="table-cell">Mensuel</div>
+                    <div class="table-cell">💰 Épargne <span class="badge variable">Variable</span></div>
+                    <div class="table-cell right" id="savings1">0 €</div>
                 </div>
 
                 <div class="table-row total-row">
