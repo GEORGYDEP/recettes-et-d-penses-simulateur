@@ -314,7 +314,7 @@ function loadMonth2() {
     content.innerHTML = `
         <div class="month-intro">
             <h2>🗓️ Octobre - Deuxième mois</h2>
-            <p><strong>🎉 Bonne nouvelle !</strong> Vous avez trouvé un emploi à Charleroi avec un salaire net de 1 800 €/mois.</p>
+            <p><strong>🎉 Bonne nouvelle !</strong> Vous avez trouvé un emploi à Charleroi avec un salaire net de 1 600 €/mois.</p>
             ${creditRepayment > 0 ? `
                 <div class="warning-box">
                     ⚠️ Vous devez rembourser votre crédit de septembre: <strong>${creditRepayment.toFixed(2)} €</strong>
@@ -330,12 +330,12 @@ function loadMonth2() {
             <div class="choice-card">
                 <h3>🏠 Choix du logement</h3>
                 <div class="choice-options">
-                    <div class="choice-option" onclick="selectHousing(2, 'colocation', 450, 1800)">
+                    <div class="choice-option" onclick="selectHousing(2, 'colocation', 450, 1600)">
                         <div class="title">Colocation/Kot</div>
                         <div class="amount">450 €</div>
                         <div class="detail">Charges incluses</div>
                     </div>
-                    <div class="choice-option" onclick="selectHousing(2, 'appartement', 700, 1800)">
+                    <div class="choice-option" onclick="selectHousing(2, 'appartement', 700, 1600)">
                         <div class="title">Appartement 1 chambre</div>
                         <div class="amount">700 €</div>
                         <div class="detail">650 € + 50 € charges</div>
@@ -348,10 +348,10 @@ function loadMonth2() {
                 <h3>🚆 Transport vers Charleroi</h3>
                 <p>⚠️ Choix structurant qui impacte votre qualité de vie et vos dépenses</p>
                 <div class="choice-options">
-                    <div class="choice-option" onclick="selectTransport(2, 'train', 100)">
+                    <div class="choice-option" onclick="selectTransport(2, 'train', 150)">
                         <div class="title">Train</div>
-                        <div class="amount">100 €/mois</div>
-                        <div class="detail">Trajets longs, fatigue accrue<br>Frais santé: 100-300 €</div>
+                        <div class="amount">150 €/mois</div>
+                        <div class="detail">Trajets longs, fatigue accrue<br>Frais santé: 150-300 €</div>
                     </div>
                     <div class="choice-option" onclick="selectTransport(2, 'voiture', 390)">
                         <div class="title">Voiture (achat)</div>
@@ -419,13 +419,28 @@ function loadMonth2() {
             <div class="choice-card">
                 <h3>👕 Autres (habillement, entretien)</h3>
                 <div class="choice-options">
-                    <div class="choice-option" onclick="selectOther(2, 0)">
-                        <div class="title">Aucun</div>
-                        <div class="amount">0 €</div>
-                    </div>
                     <div class="choice-option" onclick="selectOther(2, 150)">
-                        <div class="title">Modéré</div>
+                        <div class="title">Minimal</div>
                         <div class="amount">150 €</div>
+                    </div>
+                    <div class="choice-option" onclick="selectOther(2, 250)">
+                        <div class="title">Modéré</div>
+                        <div class="amount">250 €</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Épargne -->
+            <div class="choice-card">
+                <h3>💰 Épargne</h3>
+                <div class="choice-options">
+                    <div class="choice-option" onclick="selectSavings(2, 150)">
+                        <div class="title">Minimal</div>
+                        <div class="amount">150 €</div>
+                    </div>
+                    <div class="choice-option" onclick="selectSavings(2, 250)">
+                        <div class="title">Modéré</div>
+                        <div class="amount">250 €</div>
                     </div>
                 </div>
             </div>
@@ -444,13 +459,13 @@ function loadMonth2() {
                 <div class="table-row" style="background: #d4edda;">
                     <div class="table-cell">01/10</div>
                     <div class="table-cell"><strong>💰 RECETTES</strong></div>
-                    <div class="table-cell right" id="totalIncome2">1800 €</div>
+                    <div class="table-cell right" id="totalIncome2">1600 €</div>
                 </div>
 
                 <div class="table-row">
                     <div class="table-cell"></div>
                     <div class="table-cell">Salaire net</div>
-                    <div class="table-cell right" id="salary2">1800 €</div>
+                    <div class="table-cell right" id="salary2">1600 €</div>
                 </div>
 
                 ${creditRepayment > 0 ? `
@@ -519,6 +534,12 @@ function loadMonth2() {
                     <div class="table-cell">Mensuel</div>
                     <div class="table-cell">👕 Autres <span class="badge variable">Variable</span></div>
                     <div class="table-cell right" id="other2">0 €</div>
+                </div>
+
+                <div class="table-row">
+                    <div class="table-cell">Mensuel</div>
+                    <div class="table-cell">💰 Épargne <span class="badge variable">Variable</span></div>
+                    <div class="table-cell right" id="savings2">0 €</div>
                 </div>
 
                 <div class="table-row total-row">
