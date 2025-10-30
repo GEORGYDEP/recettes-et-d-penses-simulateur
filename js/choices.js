@@ -205,7 +205,26 @@ function selectOther(month, cost) {
 
     gameState.months[month].expenses.other = cost;
     updateBudgetTable(month);
-    
+
+    if (month === 1) {
+        checkAllChoicesMade(month);
+    } else if (month === 2) {
+        checkAllChoicesMade2();
+    } else if (month === 3) {
+        checkAllChoicesMade3();
+    }
+}
+
+function selectSavings(month, cost) {
+    const savingsCard = event.target.closest('.choice-card');
+    savingsCard.querySelectorAll('.choice-option').forEach(opt => {
+        opt.classList.remove('selected');
+    });
+    event.target.closest('.choice-option').classList.add('selected');
+
+    gameState.months[month].expenses.savings = cost;
+    updateBudgetTable(month);
+
     if (month === 1) {
         checkAllChoicesMade(month);
     } else if (month === 2) {
@@ -269,9 +288,9 @@ function selectInheritance(choice) {
 function checkAllChoicesMade(month) {
     const m = gameState.months[month];
     const housing = m.choices.housing;
-    
+
     let allMade = true;
-    
+
     if (!housing) allMade = false;
     if (!m.expenses.telecom) allMade = false;
     if (!m.expenses.transport) allMade = false;
@@ -279,7 +298,8 @@ function checkAllChoicesMade(month) {
     if (m.expenses.leisure === undefined) allMade = false;
     if (m.expenses.health === undefined) allMade = false;
     if (m.expenses.other === undefined) allMade = false;
-    
+    if (m.expenses.savings === undefined) allMade = false;
+
     // Si on a quitté les parents, vérifier le déménagement
     if (housing && housing.type !== 'parents' && !m.expenses.moving) {
         allMade = false;

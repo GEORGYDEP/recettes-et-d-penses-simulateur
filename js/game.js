@@ -113,6 +113,10 @@ function updateBudgetTable(month) {
     document.getElementById(`health${month}`).textContent = (m.expenses.health || 0) + ' €';
     document.getElementById(`other${month}`).textContent = (m.expenses.other || 0) + ' €';
 
+    if (document.getElementById(`savings${month}`)) {
+        document.getElementById(`savings${month}`).textContent = (m.expenses.savings || 0) + ' €';
+    }
+
     // Calculer le solde
     let totalExpenses = Object.values(m.expenses).reduce((sum, val) => sum + (val || 0), 0);
     
@@ -517,6 +521,7 @@ function printResults() {
                         ${m.expenses.leisure ? `<tr><td>🎟️ Loisirs</td><td style="text-align: right">${m.expenses.leisure} €</td></tr>` : ''}
                         ${m.expenses.health ? `<tr><td>🩺 Santé</td><td style="text-align: right">${m.expenses.health} €</td></tr>` : ''}
                         ${m.expenses.other ? `<tr><td>👕 Autres</td><td style="text-align: right">${m.expenses.other} €</td></tr>` : ''}
+                        ${m.expenses.savings ? `<tr><td>💰 Épargne</td><td style="text-align: right">${m.expenses.savings} €</td></tr>` : ''}
                         <tr class="total-row">
                             <td><strong>💰 Solde du mois</strong></td>
                             <td style="text-align: right; color: ${m.balance >= 0 ? '#28a745' : '#dc3545'}">${m.balance.toFixed(2)} €</td>
