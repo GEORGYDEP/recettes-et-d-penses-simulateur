@@ -75,33 +75,66 @@ function selectTransport(month, type, cost) {
     gameState.months[month].choices.transport = { type, cost };
     gameState.months[month].expenses.transport = cost;
     
-    // Pour le mois 2, mettre à jour les options de santé
+    // Pour le mois 2 (Octobre), mettre à jour les options de santé
     if (month === 2) {
         const healthOptions = document.getElementById('healthOptions2');
         if (healthOptions) {
             if (type === 'train') {
+                // Train = frais de santé fixés à 150€
                 healthOptions.innerHTML = `
-                    <div class="choice-option" onclick="selectHealth(2, 150)">
+                    <div class="choice-option selected" onclick="selectHealth(2, 150)">
+                        <div class="title">Fixe (train)</div>
+                        <div class="amount">150 €</div>
+                        <div class="detail">Trajets longs, fatigue accrue</div>
+                    </div>
+                `;
+                // Sélectionner automatiquement les frais de santé à 150€
+                gameState.months[2].expenses.health = 150;
+                updateBudgetTable(2);
+            } else {
+                // Voiture = frais de santé réduits à 100€
+                healthOptions.innerHTML = `
+                    <div class="choice-option selected" onclick="selectHealth(2, 100)">
+                        <div class="title">Fixe (voiture)</div>
+                        <div class="amount">100 €</div>
+                        <div class="detail">Moins de promiscuité</div>
+                    </div>
+                `;
+                // Sélectionner automatiquement les frais de santé à 100€
+                gameState.months[2].expenses.health = 100;
+                updateBudgetTable(2);
+            }
+        }
+    }
+
+    // Pour le mois 3 (Novembre), mettre à jour les options de santé
+    if (month === 3) {
+        const healthOptions = document.getElementById('healthOptions3');
+        if (healthOptions) {
+            if (type === 'train') {
+                // Train = frais de santé entre 150€ et 300€
+                healthOptions.innerHTML = `
+                    <div class="choice-option" onclick="selectHealth(3, 150)">
                         <div class="title">Minimal</div>
                         <div class="amount">150 €</div>
                     </div>
-                    <div class="choice-option" onclick="selectHealth(2, 300)">
+                    <div class="choice-option" onclick="selectHealth(3, 300)">
                         <div class="title">Complet</div>
                         <div class="amount">300 €</div>
                     </div>
                 `;
             } else {
-                // Voiture = moins de promiscuité = frais de santé réduits à 50€
+                // Voiture = frais de santé fixés à 100€
                 healthOptions.innerHTML = `
-                    <div class="choice-option selected" onclick="selectHealth(2, 50)">
+                    <div class="choice-option selected" onclick="selectHealth(3, 100)">
                         <div class="title">Fixe (voiture)</div>
-                        <div class="amount">50 €</div>
+                        <div class="amount">100 €</div>
                         <div class="detail">Moins de promiscuité</div>
                     </div>
                 `;
-                // Sélectionner automatiquement les frais de santé à 50€
-                gameState.months[2].expenses.health = 50;
-                updateBudgetTable(2);
+                // Sélectionner automatiquement les frais de santé à 100€
+                gameState.months[3].expenses.health = 100;
+                updateBudgetTable(3);
             }
         }
     }

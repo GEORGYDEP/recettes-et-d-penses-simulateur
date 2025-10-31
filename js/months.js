@@ -351,12 +351,12 @@ function loadMonth2() {
                     <div class="choice-option" onclick="selectTransport(2, 'train', 150)">
                         <div class="title">Train</div>
                         <div class="amount">150 €/mois</div>
-                        <div class="detail">Trajets longs, fatigue accrue<br>➡️ Frais santé: 150-300 € (variable)</div>
+                        <div class="detail">Trajets longs, fatigue accrue<br>➡️ Frais santé: 150 € (fixe)</div>
                     </div>
                     <div class="choice-option" onclick="selectTransport(2, 'voiture', 390)">
                         <div class="title">Voiture (achat)</div>
                         <div class="amount">390 €/mois</div>
-                        <div class="detail">Emprunt: 180 €<br>Essence: 150 €<br>Assurance+taxe: 60 €<br>➡️ Frais santé réduits: 50 € (fixe)</div>
+                        <div class="detail">Emprunt: 180 €<br>Essence: 150 €<br>Assurance+taxe: 60 €<br>➡️ Frais santé réduits: 100 € (fixe)</div>
                     </div>
                 </div>
             </div>
@@ -411,7 +411,7 @@ function loadMonth2() {
             <!-- Santé -->
             <div class="choice-card">
                 <h3>🩺 Santé/Imprévus</h3>
-                <p id="healthInfo2">⚠️ Les frais de santé dépendent de votre choix de transport (Train = 150-300€ variable, Voiture = 50€ fixe)</p>
+                <p id="healthInfo2">⚠️ Les frais de santé dépendent de votre choix de transport (Train = 150€ fixe, Voiture = 100€ fixe)</p>
                 <div class="choice-options" id="healthOptions2"></div>
             </div>
 
@@ -619,14 +619,17 @@ function loadMonth3() {
             <!-- Transport -->
             <div class="choice-card">
                 <h3>🚆 Transport</h3>
+                <p>⚠️ Choix structurant qui impacte vos dépenses de santé</p>
                 <div class="choice-options">
                     <div class="choice-option" onclick="selectTransport(3, 'train', 150)">
                         <div class="title">Train</div>
                         <div class="amount">150 €/mois</div>
+                        <div class="detail">Trajets longs<br>➡️ Frais santé: 150-300 € (variable)</div>
                     </div>
                     <div class="choice-option" onclick="selectTransport(3, 'voiture', 390)">
                         <div class="title">Voiture</div>
                         <div class="amount">390 €/mois</div>
+                        <div class="detail">Emprunt: 180 €<br>Essence: 150 €<br>Assurance+taxe: 60 €<br>➡️ Frais santé: 100 € (fixe)</div>
                     </div>
                 </div>
             </div>
@@ -679,16 +682,8 @@ function loadMonth3() {
             <!-- Santé -->
             <div class="choice-card">
                 <h3>🩺 Santé</h3>
-                <div class="choice-options">
-                    <div class="choice-option" onclick="selectHealth(3, 100)">
-                        <div class="title">Minimal</div>
-                        <div class="amount">100 €</div>
-                    </div>
-                    <div class="choice-option" onclick="selectHealth(3, 300)">
-                        <div class="title">Complet</div>
-                        <div class="amount">300 €</div>
-                    </div>
-                </div>
+                <p id="healthInfo3">⚠️ Les frais de santé dépendent de votre choix de transport (Train = 150-300€ variable, Voiture = 100€ fixe)</p>
+                <div class="choice-options" id="healthOptions3"></div>
             </div>
 
             <!-- Autres -->
