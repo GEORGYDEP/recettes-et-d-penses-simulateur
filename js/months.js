@@ -576,7 +576,7 @@ function loadMonth3() {
     content.innerHTML = `
         <div class="month-intro">
             <h2>🗓️ Novembre - Troisième mois</h2>
-            <p><strong>🎉 Excellente nouvelle !</strong> Vous héritez d'une maison à Bruxelles ET vous recevez une augmentation de salaire à 2 000 €/mois.</p>
+            <p><strong>🎉 Excellente nouvelle !</strong> Vous héritez d'une maison à Bruxelles et votre salaire net augmente à 1 800 €/mois.</p>
             ${creditRepayment > 0 ? `
                 <div class="warning-box">
                     ⚠️ Vous devez rembourser votre crédit d'octobre: <strong>${creditRepayment.toFixed(2)} €</strong>
@@ -590,9 +590,9 @@ function loadMonth3() {
                 <h3>🏡 Que faire de la maison héritée ?</h3>
                 <div class="choice-options">
                     <div class="choice-option" onclick="selectInheritance('habiter')">
-                        <div class="title">L'habiter</div>
+                        <div class="title">Habiter la maison héritée</div>
                         <div class="amount">300 €/mois</div>
-                        <div class="detail">Plus de loyer !<br>Assurance: 100 €<br>Précompte: 50 €<br>Entretien: 150 €</div>
+                        <div class="detail">Plus de loyer !<br>Assurance habitation: 100 €<br>Précompte immobilier: 50 €<br>Entretien du logement: 150 €<br>Chauffage / énergie: 180 €</div>
                     </div>
                     <div class="choice-option" onclick="selectInheritance('louer')">
                         <div class="title">La louer</div>
@@ -605,11 +605,11 @@ function loadMonth3() {
             <div id="housingChoice3" class="choice-card">
                 <h3>🏠 Votre logement</h3>
                 <div class="choice-options">
-                    <div class="choice-option" onclick="selectHousing(3, 'colocation', 450, 2000)">
+                    <div class="choice-option" onclick="selectHousing(3, 'colocation', 450, 1800)">
                         <div class="title">Colocation/Kot</div>
                         <div class="amount">450 €</div>
                     </div>
-                    <div class="choice-option" onclick="selectHousing(3, 'appartement', 700, 2000)">
+                    <div class="choice-option" onclick="selectHousing(3, 'appartement', 700, 1800)">
                         <div class="title">Appartement 1 chambre</div>
                         <div class="amount">700 €</div>
                     </div>
@@ -620,9 +620,9 @@ function loadMonth3() {
             <div class="choice-card">
                 <h3>🚆 Transport</h3>
                 <div class="choice-options">
-                    <div class="choice-option" onclick="selectTransport(3, 'train', 100)">
+                    <div class="choice-option" onclick="selectTransport(3, 'train', 150)">
                         <div class="title">Train</div>
-                        <div class="amount">100 €/mois</div>
+                        <div class="amount">150 €/mois</div>
                     </div>
                     <div class="choice-option" onclick="selectTransport(3, 'voiture', 390)">
                         <div class="title">Voiture</div>
@@ -693,15 +693,30 @@ function loadMonth3() {
 
             <!-- Autres -->
             <div class="choice-card">
-                <h3>👕 Autres</h3>
+                <h3>👕 Habillement et entretien</h3>
                 <div class="choice-options">
-                    <div class="choice-option" onclick="selectOther(3, 0)">
-                        <div class="title">Aucun</div>
-                        <div class="amount">0 €</div>
-                    </div>
                     <div class="choice-option" onclick="selectOther(3, 150)">
-                        <div class="title">Modéré</div>
+                        <div class="title">Aucun</div>
                         <div class="amount">150 €</div>
+                    </div>
+                    <div class="choice-option" onclick="selectOther(3, 250)">
+                        <div class="title">Modéré</div>
+                        <div class="amount">250 €</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Épargne -->
+            <div class="choice-card">
+                <h3>💰 Épargne</h3>
+                <div class="choice-options">
+                    <div class="choice-option" onclick="selectSavings(3, 150)">
+                        <div class="title">Minimal</div>
+                        <div class="amount">150 €</div>
+                    </div>
+                    <div class="choice-option" onclick="selectSavings(3, 250)">
+                        <div class="title">Modéré</div>
+                        <div class="amount">250 €</div>
                     </div>
                 </div>
             </div>
@@ -720,13 +735,13 @@ function loadMonth3() {
                 <div class="table-row" style="background: #d4edda;">
                     <div class="table-cell">01/11</div>
                     <div class="table-cell"><strong>💰 RECETTES</strong></div>
-                    <div class="table-cell right" id="totalIncome3">2000 €</div>
+                    <div class="table-cell right" id="totalIncome3">1800 €</div>
                 </div>
 
                 <div class="table-row">
                     <div class="table-cell"></div>
                     <div class="table-cell">Salaire net</div>
-                    <div class="table-cell right">2000 €</div>
+                    <div class="table-cell right">1800 €</div>
                 </div>
 
                 <div class="table-row" id="rentalIncomeRow3" style="display: none; background: #d4edda;">
@@ -755,13 +770,37 @@ function loadMonth3() {
                     <div class="table-cell right" id="rent3">0 €</div>
                 </div>
 
-                <div class="table-row" id="houseExpensesRow3" style="display: none;">
-                    <div class="table-cell">Mensuel</div>
-                    <div class="table-cell">🏡 Frais maison héritée <span class="badge fixed">Fixe</span></div>
-                    <div class="table-cell right" id="houseExpenses3">0 €</div>
+                <div class="table-row" id="houseRow3" style="display: none;">
+                    <div class="table-cell">01/11</div>
+                    <div class="table-cell">🏠 Habiter la maison héritée <span class="badge fixed">Fixe</span></div>
+                    <div class="table-cell right" id="house3">0 €</div>
                 </div>
 
-                <div class="table-row">
+                <div class="table-row" id="insuranceRow3" style="display: none;">
+                    <div class="table-cell">05/11</div>
+                    <div class="table-cell">🏡 Assurance habitation <span class="badge fixed">Fixe</span></div>
+                    <div class="table-cell right" id="insurance3">0 €</div>
+                </div>
+
+                <div class="table-row" id="propertyTaxRow3" style="display: none;">
+                    <div class="table-cell">10/11</div>
+                    <div class="table-cell">🏛️ Précompte immobilier <span class="badge fixed">Fixe</span></div>
+                    <div class="table-cell right" id="propertyTax3">0 €</div>
+                </div>
+
+                <div class="table-row" id="maintenanceRow3" style="display: none;">
+                    <div class="table-cell">Mensuel</div>
+                    <div class="table-cell">🔧 Entretien du logement <span class="badge fixed">Fixe</span></div>
+                    <div class="table-cell right" id="maintenance3">0 €</div>
+                </div>
+
+                <div class="table-row" id="heatingRow3" style="display: none;">
+                    <div class="table-cell">Mensuel</div>
+                    <div class="table-cell">🔥 Chauffage / énergie <span class="badge fixed">Fixe</span></div>
+                    <div class="table-cell right" id="heating3">0 €</div>
+                </div>
+
+                <div class="table-row" id="energyRow3">
                     <div class="table-cell">05/11</div>
                     <div class="table-cell">🔌 Énergie <span class="badge fixed">Fixe</span></div>
                     <div class="table-cell right" id="energy3">0 €</div>
@@ -807,6 +846,12 @@ function loadMonth3() {
                     <div class="table-cell">Mensuel</div>
                     <div class="table-cell">👕 Autres <span class="badge variable">Variable</span></div>
                     <div class="table-cell right" id="other3">0 €</div>
+                </div>
+
+                <div class="table-row">
+                    <div class="table-cell">Mensuel</div>
+                    <div class="table-cell">💰 Épargne <span class="badge variable">Variable</span></div>
+                    <div class="table-cell right" id="savings3">0 €</div>
                 </div>
 
                 <div class="table-row total-row">
