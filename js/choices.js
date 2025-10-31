@@ -91,12 +91,17 @@ function selectTransport(month, type, cost) {
                     </div>
                 `;
             } else {
+                // Voiture = moins de promiscuité = frais de santé réduits à 50€
                 healthOptions.innerHTML = `
-                    <div class="choice-option" onclick="selectHealth(2, 150)">
-                        <div class="title">Standard</div>
-                        <div class="amount">150 €</div>
+                    <div class="choice-option selected" onclick="selectHealth(2, 50)">
+                        <div class="title">Fixe (voiture)</div>
+                        <div class="amount">50 €</div>
+                        <div class="detail">Moins de promiscuité</div>
                     </div>
                 `;
+                // Sélectionner automatiquement les frais de santé à 50€
+                gameState.months[2].expenses.health = 50;
+                updateBudgetTable(2);
             }
         }
     }
