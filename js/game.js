@@ -50,7 +50,10 @@ function startGame() {
 
 function loadMonth(monthNum) {
     gameState.currentMonth = monthNum;
-    
+
+    // Remonter automatiquement en haut de la page
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
     // Mettre à jour la barre de progression
     for (let i = 1; i <= 3; i++) {
         const step = document.getElementById(`step${i}`);
@@ -263,6 +266,55 @@ function nextMonth() {
     }
 }
 
+function restartGame() {
+    // Réinitialiser l'état du jeu
+    gameState = {
+        currentMonth: 1,
+        email: '',
+        totalSavings: 0,
+        totalCredit: 0,
+        creditInterestRate: 0.15,
+        savingsInterestRate: 0.02,
+        months: {
+            1: {
+                name: 'Septembre',
+                income: 0,
+                expenses: {},
+                choices: {},
+                balance: 0
+            },
+            2: {
+                name: 'Octobre',
+                income: 1600,
+                expenses: {},
+                choices: {},
+                balance: 0
+            },
+            3: {
+                name: 'Novembre',
+                income: 1800,
+                expenses: {},
+                choices: {},
+                balance: 0
+            }
+        }
+    };
+
+    // Fermer le modal
+    document.getElementById('summaryModal').classList.remove('show');
+
+    // Masquer le contenu du jeu et afficher la section email
+    document.getElementById('gameContent').classList.add('hidden');
+    document.getElementById('emailSection').classList.remove('hidden');
+
+    // Réinitialiser le champ email
+    document.getElementById('emailInput').value = '';
+    document.getElementById('emailError').textContent = '';
+
+    // Remonter en haut de la page
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
 function showFinalSummary() {
     const modal = document.getElementById('summaryModal');
     const title = document.getElementById('summaryTitle');
@@ -357,6 +409,13 @@ function showFinalSummary() {
     `;
 
     body.innerHTML = summaryHTML;
+
+    // Modifier le bouton "Mois suivant" en "Rejouer"
+    const actionButtons = modal.querySelector('.action-buttons');
+    if (actionButtons) {
+        actionButtons.innerHTML = '<button class="btn btn-primary" onclick="restartGame()">Rejouer</button>';
+    }
+
     modal.classList.add('show');
 }
 
