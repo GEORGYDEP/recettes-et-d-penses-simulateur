@@ -23,7 +23,7 @@ let gameState = {
         },
         3: {
             name: 'Novembre',
-            income: 2000,
+            income: 1800,
             expenses: {},
             choices: {},
             balance: 0
@@ -98,7 +98,7 @@ function updateBudgetTable(month) {
     document.getElementById(`energy${month}`).textContent = (m.expenses.energy || 0) + ' €';
     document.getElementById(`telecom${month}`).textContent = (m.expenses.telecom || 0) + ' €';
     document.getElementById(`transport${month}`).textContent = (m.expenses.transport || 0) + ' €';
-    
+
     if (m.expenses.moving && document.getElementById(`movingRow${month}`)) {
         document.getElementById(`movingRow${month}`).style.display = '';
         document.getElementById(`moving${month}`).textContent = m.expenses.moving + ' €';
@@ -106,6 +106,23 @@ function updateBudgetTable(month) {
 
     if (m.expenses.houseExpenses && document.getElementById(`houseExpenses${month}`)) {
         document.getElementById(`houseExpenses${month}`).textContent = m.expenses.houseExpenses + ' €';
+    }
+
+    // Nouveaux postes pour la maison héritée (mois 3)
+    if (document.getElementById(`house${month}`)) {
+        document.getElementById(`house${month}`).textContent = (m.expenses.house || 0) + ' €';
+    }
+    if (document.getElementById(`insurance${month}`)) {
+        document.getElementById(`insurance${month}`).textContent = (m.expenses.insurance || 0) + ' €';
+    }
+    if (document.getElementById(`propertyTax${month}`)) {
+        document.getElementById(`propertyTax${month}`).textContent = (m.expenses.propertyTax || 0) + ' €';
+    }
+    if (document.getElementById(`maintenance${month}`)) {
+        document.getElementById(`maintenance${month}`).textContent = (m.expenses.maintenance || 0) + ' €';
+    }
+    if (document.getElementById(`heating${month}`)) {
+        document.getElementById(`heating${month}`).textContent = (m.expenses.heating || 0) + ' €';
     }
 
     document.getElementById(`food${month}`).textContent = (m.expenses.food || 0) + ' €';

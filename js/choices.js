@@ -245,40 +245,69 @@ function selectInheritance(choice) {
     gameState.months[month].choices.inheritance = choice;
 
     if (choice === 'habiter') {
-        // Plus de loyer, mais frais de maison
-        gameState.months[month].income = 2000; // Salaire seulement
+        // Plus de loyer, mais frais de maison détaillés
+        gameState.months[month].income = 1800; // Salaire seulement
         gameState.months[month].expenses.rent = 0;
-        gameState.months[month].expenses.houseExpenses = 300; // 100 + 50 + 150
-        
+        gameState.months[month].expenses.house = 300; // Habiter la maison héritée
+        gameState.months[month].expenses.insurance = 100; // Assurance habitation
+        gameState.months[month].expenses.propertyTax = 50; // Précompte immobilier
+        gameState.months[month].expenses.maintenance = 150; // Entretien du logement
+        gameState.months[month].expenses.heating = 180; // Chauffage / énergie
+        gameState.months[month].expenses.energy = 0; // Pas d'énergie séparée
+
         const housingChoice = document.getElementById('housingChoice3');
         const rentRow = document.getElementById('rentRow3');
-        const houseExpensesRow = document.getElementById('houseExpensesRow3');
+        const houseRow = document.getElementById('houseRow3');
+        const insuranceRow = document.getElementById('insuranceRow3');
+        const propertyTaxRow = document.getElementById('propertyTaxRow3');
+        const maintenanceRow = document.getElementById('maintenanceRow3');
+        const heatingRow = document.getElementById('heatingRow3');
+        const energyRow = document.getElementById('energyRow3');
         const rentalIncomeRow = document.getElementById('rentalIncomeRow3');
         const totalIncome = document.getElementById('totalIncome3');
-        
+
         if (housingChoice) housingChoice.style.display = 'none';
         if (rentRow) rentRow.style.display = 'none';
-        if (houseExpensesRow) houseExpensesRow.style.display = '';
+        if (houseRow) houseRow.style.display = '';
+        if (insuranceRow) insuranceRow.style.display = '';
+        if (propertyTaxRow) propertyTaxRow.style.display = '';
+        if (maintenanceRow) maintenanceRow.style.display = '';
+        if (heatingRow) heatingRow.style.display = '';
+        if (energyRow) energyRow.style.display = 'none';
         if (rentalIncomeRow) rentalIncomeRow.style.display = 'none';
-        if (totalIncome) totalIncome.textContent = '2000 €';
+        if (totalIncome) totalIncome.textContent = '1800 €';
     } else {
         // Revenu locatif
-        gameState.months[month].income = 2000 + 800; // Salaire + revenu locatif
-        gameState.months[month].expenses.houseExpenses = 0; // Pas de frais si on loue
-        
+        gameState.months[month].income = 1800 + 800; // Salaire + revenu locatif
+        gameState.months[month].expenses.house = 0;
+        gameState.months[month].expenses.insurance = 0;
+        gameState.months[month].expenses.propertyTax = 0;
+        gameState.months[month].expenses.maintenance = 0;
+        gameState.months[month].expenses.heating = 0;
+
         const rentalIncomeRow = document.getElementById('rentalIncomeRow3');
         const rentalIncome = document.getElementById('rentalIncome3');
         const totalIncome = document.getElementById('totalIncome3');
         const housingChoice = document.getElementById('housingChoice3');
         const rentRow = document.getElementById('rentRow3');
-        const houseExpensesRow = document.getElementById('houseExpensesRow3');
-        
+        const houseRow = document.getElementById('houseRow3');
+        const insuranceRow = document.getElementById('insuranceRow3');
+        const propertyTaxRow = document.getElementById('propertyTaxRow3');
+        const maintenanceRow = document.getElementById('maintenanceRow3');
+        const heatingRow = document.getElementById('heatingRow3');
+        const energyRow = document.getElementById('energyRow3');
+
         if (rentalIncomeRow) rentalIncomeRow.style.display = '';
         if (rentalIncome) rentalIncome.textContent = '800 €';
-        if (totalIncome) totalIncome.textContent = '2800 €';
+        if (totalIncome) totalIncome.textContent = '2600 €';
         if (housingChoice) housingChoice.style.display = '';
         if (rentRow) rentRow.style.display = '';
-        if (houseExpensesRow) houseExpensesRow.style.display = 'none';
+        if (houseRow) houseRow.style.display = 'none';
+        if (insuranceRow) insuranceRow.style.display = 'none';
+        if (propertyTaxRow) propertyTaxRow.style.display = 'none';
+        if (maintenanceRow) maintenanceRow.style.display = 'none';
+        if (heatingRow) heatingRow.style.display = 'none';
+        if (energyRow) energyRow.style.display = '';
     }
 
     updateBudgetTable(month);
@@ -339,19 +368,20 @@ function checkAllChoicesMade2() {
 
 function checkAllChoicesMade3() {
     const m = gameState.months[3];
-    
+
     let allMade = true;
-    
+
     if (!m.choices.inheritance) allMade = false;
-    
+
     if (m.choices.inheritance === 'louer' && !m.choices.housing) allMade = false;
-    
+
     if (!m.expenses.transport) allMade = false;
     if (!m.expenses.telecom) allMade = false;
     if (m.expenses.food === undefined) allMade = false;
     if (m.expenses.leisure === undefined) allMade = false;
     if (m.expenses.health === undefined) allMade = false;
     if (m.expenses.other === undefined) allMade = false;
+    if (m.expenses.savings === undefined) allMade = false;
 
     if (allMade) {
         const budgetSection = document.getElementById('budgetTableSection');
